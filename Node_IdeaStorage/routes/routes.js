@@ -1,5 +1,5 @@
 const express = require('express');
-const userModel = require('../models/userModel');
+const User = require('../models/userModel');
 const ideaModel = require('../models/IdeaModel');
 const route = express.Router();
 const jwt = require('jsonwebtoken');
@@ -31,7 +31,7 @@ route.post('/register',(req,res)=>{
 
 })
 route.post('/login',(req,res) =>{
-    userModel.findOne({email: req.body.email}).then((user) => {
+    User.findOne({email: req.body.email}).then((user) => {
         console.log(user)
 
         bcrypt.compare(req.body.password, user.password).then((passwordCheck) => {
